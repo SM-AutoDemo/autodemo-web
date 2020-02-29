@@ -15,10 +15,10 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 		if(!file_exists($sDir))
 		{
-			mkdir($sDir, 0744);
+			mkdir($sDir, 755);
 		}
 
-		file_put_contents($sDir . "{$sAddress}.json", json_encode([date('m.d.y - H:i:s'), $_POST['key'], $sData]) . ",\n", FILE_APPEND | LOCK_EX);
+		file_put_contents($sDir . "{$sAddress}.json", json_encode([date('m.d.y - H:i:s'), $sData]) . ",\n", FILE_APPEND | LOCK_EX);
 
 		if($sData['event'] == 'demo_unload' && !empty($sFTPSettings = $sSettings[$sAddress]['ftp']))
 		{
@@ -26,7 +26,8 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 			if(!empty($sFTPSettings))
 			{
-				$pFTPConnect = ftp_connect($sFTPSettings['host']);
+				$sFTPConnect = explode(':', $sFTPSettings['host']);
+				$pFTPConnect = ftp_connect($sFTPConnect[0], isset($sFTPConnect[1]) ? $sFTPConnect[1] : 21);
 
 				if(!$pFTPConnect || !ftp_login($pFTPConnect, $sFTPSettings['user'], $sFTPSettings['password']))
 				{
@@ -44,7 +45,7 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 				if(!file_exists($sDir))
 				{
-					mkdir($sDir, 0755);
+					mkdir($sDir, 755);
 				}
 
 				set_time_limit($sData['params']['time_limit'] + 8);
@@ -61,7 +62,7 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 				foreach($sData['params']['files'] as $sFile)
 				{
-					if(ftp_fget($pFTPConnect, fopen($sDir . $sFile, 'w+'), $sFile, FTP_BINARY))
+					if(ftp_fget($pFTPConnect, $pLocalFile = fopen($sDir . $sFile, 'w+'), $sFile, FTP_BINARY))
 					{
 						$pZip = new ZipArchive();
 						$pZip->open($sDir . $sFile . '.zip', ZipArchive::CREATE);
@@ -69,6 +70,7 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 						$pZip->close();
 
 						unlink($sDir . $sFile);
+						fclose($pLocalFile);
 						ftp_delete($pFTPConnect, $sFile);
 					}
 				}
