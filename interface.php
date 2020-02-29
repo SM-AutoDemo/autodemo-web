@@ -10,7 +10,7 @@ if(!defined('_interface_included'))
 		<meta charset="utf-8">
 		<meta name="author" content="https://vk.com/wend4r">
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=5.0">
-		<title>WocAWP :: Demos</title>
+		<title>Demos</title>
 		<link rel="preload" href="style.css" as="style">
 		<link rel="stylesheet" href="style.css"/>
 	</head>
