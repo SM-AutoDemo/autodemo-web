@@ -1,0 +1,72 @@
+body
+{
+	margin: 0px;
+	font-family: 'Montserrat', sans-serif;
+	padding-right: 0!important;
+	background: url(data/img/background.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
+header
+{
+	background: linear-gradient(to right, #000, #222);
+	box-shadow: 0px 1px 4px rgba(0, 0, 0);
+	min-height: 70px;
+	user-select: none;
+	z-index: 11;
+	padding: 0 11;
+}
+.wocawp
+{
+	transform: translateY(50%);
+}
+table
+{
+	text-align: center;
+	border-collapse: collapse;
+	border-spacing: 5px;
+	border-radius: 20px;
+	background: #1f1f1f;
+	min-width: 50%;
+	max-width: 80%;
+	margin: 20px auto;
+}
+.center
+{
+	margin-top: 25px;
+	text-align: center;
+}
+tbody tr
+{
+	transition: all .25s ease;
+}
+tbody tr:hover
+{
+	background: #262626;
+}
+th
+{
+	font-size: 22px;
+	font-weight: 300;
+	padding: 12px 10px;
+	border-bottom: 2px solid #F56433;
+}
+.padding
+{
+	height: 20px;
+}
+th, td
+{
+	color: #AAA;
+}
+td
+{
+	padding: 10px;
+	border-bottom: 1px solid #262626;
+}
+a
+{
+	text-decoration: none;
+	background-color: transparent;
+	color: #FFF;
+}
