@@ -19,6 +19,7 @@ header
 .logo
 {
 	transform: translateY(50%);
+	height: 40px;
 }
 table
 {
