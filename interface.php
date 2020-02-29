@@ -16,7 +16,7 @@ if(!defined('_interface_included'))
 	</head>
 	<body>
 		<header>
-			<a href="//wocawp.ru"><img class="wocawp" src="data/img/logo.svg"/></a>
+			<a href=""><img class="logo" src="data/img/logo.svg"/></a>
 		</header>
 		<table class="center">
 			<thead>
