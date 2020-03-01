@@ -15,7 +15,7 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 		if(!file_exists($sDir))
 		{
-			mkdir($sDir, 755);
+			mkdir($sDir, 0755);
 		}
 
 		file_put_contents($sDir . "{$sAddress}.json", json_encode([date('m.d.y - H:i:s'), $sData]) . ",\n", FILE_APPEND | LOCK_EX);
@@ -45,7 +45,7 @@ if(isset($_POST['port']) && isset($_POST['key']) && isset($_POST['data']))
 
 				if(!file_exists($sDir))
 				{
-					mkdir($sDir, 755);
+					mkdir($sDir, 0755);
 				}
 
 				set_time_limit($sData['params']['time_limit'] + 8);
